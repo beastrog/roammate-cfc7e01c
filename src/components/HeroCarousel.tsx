@@ -76,7 +76,7 @@ export default function HeroCarousel() {
               {heroSlides[currentSlide].subtitle}
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button variant="hero" size="xl" className="animate-glow-pulse">
+              <Button variant="hero" size="xl">
                 {heroSlides[currentSlide].cta}
               </Button>
               <Button variant="warm" size="xl">

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { MapPin, Calendar, Users, Star, Heart } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import JoinTripModal from "./JoinTripModal";
 
 interface TripCardProps {
   trip: {
@@ -29,6 +30,7 @@ interface TripCardProps {
 export default function TripCard({ trip }: TripCardProps) {
   const [isLiked, setIsLiked] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
+  const [showJoinModal, setShowJoinModal] = useState(false);
 
   return (
     <div className="group bg-card rounded-xl shadow-warm hover:shadow-cultural transition-all duration-300 overflow-hidden border border-border/50 hover:border-primary/30">
@@ -157,11 +159,24 @@ export default function TripCard({ trip }: TripCardProps) {
           >
             {isExpanded ? "Show Less" : "View Group"}
           </Button>
-          <Button variant="hero" size="sm" className="flex-1">
+          <Button 
+            variant="hero" 
+            size="sm" 
+            className="flex-1"
+            onClick={() => setShowJoinModal(true)}
+          >
             Join Trip
           </Button>
         </div>
       </div>
+      
+      <JoinTripModal 
+        isOpen={showJoinModal}
+        onClose={() => setShowJoinModal(false)}
+        tripTitle={trip.title}
+        tripPrice={trip.price}
+        tripLocation={trip.location}
+      />
     </div>
   );
 }

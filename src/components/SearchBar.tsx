@@ -2,10 +2,39 @@ import { useState } from "react";
 import { Search, MapPin, Calendar, Users, Filter } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { useNavigate } from "react-router-dom";
 
 export default function SearchBar() {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedVibe, setSelectedVibe] = useState("");
+  const [showResults, setShowResults] = useState(false);
+  const navigate = useNavigate();
+
+  const mockResults = [
+    "Spiritual Journey to Varanasi",
+    "Kerala Backwaters Adventure", 
+    "Rajasthan Desert Safari",
+    "Himachal Mountain Trek",
+    "Goa Beach Retreat"
+  ];
+
+  const filteredResults = mockResults.filter(result =>
+    result.toLowerCase().includes(searchQuery.toLowerCase())
+  ).slice(0, 5);
+
+  const handleSearch = () => {
+    if (searchQuery.trim()) {
+      navigate(`/discover?query=${encodeURIComponent(searchQuery)}`);
+    } else {
+      navigate('/discover');
+    }
+  };
+
+  const handleResultClick = (result: string) => {
+    setSearchQuery(result);
+    setShowResults(false);
+    navigate(`/discover?query=${encodeURIComponent(result)}`);
+  };
 
   const vibes = [
     { id: "adventure", label: "Adventure", emoji: "🏔️" },
@@ -26,9 +55,41 @@ export default function SearchBar() {
               <Input
                 placeholder="Where do you want to explore?"
                 value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
+                onChange={(e) => {
+                  setSearchQuery(e.target.value);
+                  setShowResults(e.target.value.length > 0);
+                }}
+                onFocus={() => setShowResults(searchQuery.length > 0)}
+                onBlur={() => setTimeout(() => setShowResults(false), 200)}
                 className="pl-12 h-14 text-lg border-border/50 focus:border-primary"
               />
+              
+              {/* Search Results Dropdown */}
+              {showResults && filteredResults.length > 0 && (
+                <div className="absolute top-full left-0 right-0 mt-1 bg-card border border-border/50 rounded-lg shadow-cultural z-10">
+                  {filteredResults.map((result, index) => (
+                    <button
+                      key={index}
+                      onClick={() => handleResultClick(result)}
+                      className="w-full px-4 py-3 text-left hover:bg-accent transition-colors first:rounded-t-lg last:rounded-b-lg"
+                    >
+                      <div className="flex items-center gap-3">
+                        <Search className="w-4 h-4 text-muted-foreground" />
+                        <span>{result}</span>
+                      </div>
+                    </button>
+                  ))}
+                </div>
+              )}
+              
+              {showResults && searchQuery && filteredResults.length === 0 && (
+                <div className="absolute top-full left-0 right-0 mt-1 bg-card border border-border/50 rounded-lg shadow-cultural z-10 p-4">
+                  <div className="flex items-center gap-3 text-muted-foreground">
+                    <Search className="w-4 h-4" />
+                    <span>No results found</span>
+                  </div>
+                </div>
+              )}
             </div>
             
             <div className="flex gap-2">
@@ -48,7 +109,12 @@ export default function SearchBar() {
                 />
               </div>
               
-              <Button variant="hero" size="lg" className="h-14 px-8">
+              <Button 
+                variant="hero" 
+                size="lg" 
+                className="h-14 px-8"
+                onClick={handleSearch}
+              >
                 <Search className="w-5 h-5 mr-2" />
                 Search
               </Button>

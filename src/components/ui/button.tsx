@@ -21,6 +21,7 @@ const buttonVariants = cva(
         hero: "bg-gradient-hero text-primary-foreground font-semibold shadow-cultural hover:shadow-glow transform hover:scale-105 transition-all duration-300",
         cultural: "bg-heritage text-heritage-foreground hover:bg-heritage/90 shadow-warm border border-heritage/20",
         warm: "bg-gradient-warm text-foreground border border-border hover:bg-gradient-cultural hover:text-heritage-foreground shadow-warm",
+        heritage: "bg-heritage text-heritage-foreground hover:bg-heritage/90 shadow-warm",
       },
       size: {
         default: "h-10 px-4 py-2",
