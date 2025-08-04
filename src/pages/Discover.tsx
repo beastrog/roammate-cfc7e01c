@@ -6,13 +6,24 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import TripCard from "@/components/TripCard";
 
+// Import images
+import trip1 from "@/assets/trip-1.jpg";
+import trip2 from "@/assets/trip-2.jpg";
+import trip3 from "@/assets/trip-3.jpg";
+import avatar1 from "@/assets/avatar-1.jpg";
+import avatar2 from "@/assets/avatar-2.jpg";
+import avatar3 from "@/assets/avatar-3.jpg";
+import hero1 from "@/assets/hero-1.jpg";
+import hero2 from "@/assets/hero-2.jpg";
+import hero3 from "@/assets/hero-3.jpg";
+
 // Mock data for trips
 const mockTrips = [
   {
     id: "1",
     title: "Spiritual Journey to Varanasi",
     location: "Varanasi, Uttar Pradesh",
-    image: "/src/assets/trip-1.jpg",
+    image: trip1,
     duration: "7 days",
     groupSize: 6,
     maxGroupSize: 10,
@@ -21,7 +32,7 @@ const mockTrips = [
     vibe: "Spiritual",
     organizer: {
       name: "Arjun Kumar",
-      avatar: "/src/assets/avatar-1.jpg",
+      avatar: avatar1,
       verified: true,
       bio: "Spiritual guide with 8+ years experience in Varanasi's ancient rituals",
       age: 32,
@@ -34,7 +45,7 @@ const mockTrips = [
     },
     members: [
       { 
-        avatar: "/src/assets/avatar-1.jpg", 
+        avatar: avatar1, 
         name: "Priya Sharma",
         bio: "Travel blogger passionate about spiritual journeys",
         age: 28,
@@ -46,7 +57,7 @@ const mockTrips = [
         languages: ["Hindi", "English"]
       },
       { 
-        avatar: "/src/assets/avatar-2.jpg", 
+        avatar: avatar2, 
         name: "Raj Patel",
         bio: "Software engineer seeking mindfulness through travel",
         age: 26,
@@ -58,7 +69,7 @@ const mockTrips = [
         languages: ["Hindi", "English", "Gujarati"]
       },
       { 
-        avatar: "/src/assets/avatar-3.jpg", 
+        avatar: avatar3, 
         name: "Maya Khanna",
         bio: "Yoga instructor exploring India's spiritual heritage",
         age: 30,
@@ -75,7 +86,7 @@ const mockTrips = [
     id: "2",
     title: "Backwaters & Spice Gardens",
     location: "Kerala",
-    image: "/src/assets/trip-2.jpg",
+    image: trip2,
     duration: "5 days",
     groupSize: 4,
     maxGroupSize: 8,
@@ -84,7 +95,7 @@ const mockTrips = [
     vibe: "Nature",
     organizer: {
       name: "Meera Singh",
-      avatar: "/src/assets/avatar-2.jpg",
+      avatar: avatar2,
       verified: true,
       bio: "Nature enthusiast and Kerala native sharing authentic experiences",
       age: 29,
@@ -97,220 +108,256 @@ const mockTrips = [
     },
     members: [
       { 
-        avatar: "/src/assets/avatar-2.jpg", 
-        name: "Kiran Das",
-        bio: "Photographer capturing Kerala's natural beauty",
-        age: 31,
-        location: "Trivandrum",
-        joinedDate: "April 2023",
-        tripsCompleted: 7,
-        rating: 4.5,
-        interests: ["Photography", "Nature", "Backwaters"],
-        languages: ["Malayalam", "English"]
+        avatar: avatar2, 
+        name: "Suresh Menon",
+        bio: "Photography enthusiast capturing Kerala's natural beauty",
+        age: 35,
+        location: "Thiruvananthapuram",
+        joinedDate: "April 2022",
+        tripsCompleted: 15,
+        rating: 4.9,
+        interests: ["Photography", "Nature", "Travel"],
+        languages: ["Malayalam", "English", "Tamil"]
       },
       { 
-        avatar: "/src/assets/avatar-3.jpg", 
-        name: "Suresh Kumar",
-        bio: "Spice trader sharing authentic Kerala experiences",
-        age: 35,
-        location: "Munnar",
-        joinedDate: "September 2022",
-        tripsCompleted: 15,
+        avatar: avatar3, 
+        name: "Anjali Iyer",
+        bio: "Food blogger exploring Kerala's culinary traditions",
+        age: 27,
+        location: "Chennai",
+        joinedDate: "September 2023",
+        tripsCompleted: 6,
         rating: 4.7,
-        interests: ["Spices", "Trading", "Local Culture"],
-        languages: ["Malayalam", "Hindi", "English"]
+        interests: ["Cooking", "Food", "Culture"],
+        languages: ["Tamil", "English", "Hindi"]
+      },
+      { 
+        avatar: avatar1, 
+        name: "Vikram Reddy",
+        bio: "Adventure seeker and nature lover",
+        age: 31,
+        location: "Hyderabad",
+        joinedDate: "November 2022",
+        tripsCompleted: 9,
+        rating: 4.8,
+        interests: ["Adventure", "Nature", "Photography"],
+        languages: ["Telugu", "Hindi", "English"]
       }
     ]
   },
   {
     id: "3",
-    title: "Desert Safari Adventure",
+    title: "Rajasthan Heritage Trail",
     location: "Rajasthan",
-    image: "/src/assets/trip-3.jpg",
-    duration: "4 days",
-    groupSize: 8,
+    image: trip3,
+    duration: "8 days",
+    groupSize: 5,
     maxGroupSize: 12,
     price: 18000,
     rating: 4.7,
-    vibe: "Adventure",
+    vibe: "Cultural",
     organizer: {
-      name: "Vikram Patel",
-      avatar: "/src/assets/avatar-3.jpg",
+      name: "Priya Rathore",
+      avatar: avatar3,
       verified: true,
-      bio: "Adventure guide specializing in Rajasthan's desert expeditions",
+      bio: "Heritage expert and Rajasthan native sharing royal stories",
       age: 34,
-      location: "Jaisalmer, Rajasthan",
-      joinedDate: "November 2019",
+      location: "Jaipur, Rajasthan",
+      joinedDate: "January 2021",
       tripsCompleted: 52,
       rating: 4.8,
-      interests: ["Adventure", "Desert Culture", "Camel Safari", "History"],
-      languages: ["Hindi", "English", "Rajasthani", "Gujarati"]
+      interests: ["History", "Architecture", "Culture", "Photography"],
+      languages: ["Hindi", "English", "Rajasthani"]
     },
     members: [
       { 
-        avatar: "/src/assets/avatar-1.jpg", 
-        name: "Anita Verma",
-        bio: "Adventure seeker and desert photography enthusiast",
-        age: 27,
-        location: "Jaipur",
-        joinedDate: "May 2023",
-        tripsCompleted: 6,
-        rating: 4.4,
-        interests: ["Adventure", "Photography", "Desert Culture"],
+        avatar: avatar3, 
+        name: "Amit Singh",
+        bio: "History buff exploring India's royal heritage",
+        age: 29,
+        location: "Delhi",
+        joinedDate: "March 2023",
+        tripsCompleted: 7,
+        rating: 4.6,
+        interests: ["History", "Architecture", "Photography"],
         languages: ["Hindi", "English"]
       },
       { 
-        avatar: "/src/assets/avatar-3.jpg", 
-        name: "Rohan Gupta",
-        bio: "Travel vlogger documenting India's diverse landscapes",
-        age: 25,
-        location: "Delhi",
-        joinedDate: "March 2023",
-        tripsCompleted: 9,
-        rating: 4.6,
-        interests: ["Vlogging", "Adventure", "Culture"],
-        languages: ["Hindi", "English", "Punjabi"]
+        avatar: avatar1, 
+        name: "Kavya Sharma",
+        bio: "Fashion designer inspired by traditional textiles",
+        age: 26,
+        location: "Mumbai",
+        joinedDate: "July 2023",
+        tripsCompleted: 4,
+        rating: 4.5,
+        interests: ["Fashion", "Textiles", "Culture"],
+        languages: ["Hindi", "English", "Marathi"]
       },
       { 
-        avatar: "/src/assets/avatar-2.jpg", 
-        name: "Deepa Singh",
-        bio: "Cultural researcher exploring Rajasthan's heritage",
+        avatar: avatar2, 
+        name: "Rahul Verma",
+        bio: "Photographer capturing Rajasthan's vibrant culture",
         age: 33,
-        location: "Udaipur",
-        joinedDate: "July 2022",
-        tripsCompleted: 14,
+        location: "Pune",
+        joinedDate: "October 2022",
+        tripsCompleted: 11,
         rating: 4.8,
-        interests: ["Culture", "Research", "Heritage", "Art"],
-        languages: ["Hindi", "English", "Rajasthani"]
+        interests: ["Photography", "Culture", "Travel"],
+        languages: ["Hindi", "English", "Marathi"]
       }
     ]
   },
   {
     id: "4",
-    title: "Himalayan Meditation Retreat",
-    location: "Rishikesh, Uttarakhand",
-    image: "/src/assets/hero-2.jpg",
-    duration: "10 days",
-    groupSize: 5,
-    maxGroupSize: 8,
+    title: "Himalayan Adventure",
+    location: "Himachal Pradesh",
+    image: hero2,
+    duration: "6 days",
+    groupSize: 3,
+    maxGroupSize: 6,
     price: 22000,
     rating: 4.9,
-    vibe: "Spiritual",
+    vibe: "Adventure",
     organizer: {
-      name: "Guru Anand",
-      avatar: "/src/assets/avatar-1.jpg",
+      name: "Ravi Thakur",
+      avatar: avatar1,
       verified: true,
-      bio: "Certified meditation teacher with 15+ years of Himalayan practice",
-      age: 45,
-      location: "Rishikesh",
-      joinedDate: "January 2018",
-      tripsCompleted: 67,
-      rating: 5.0,
-      interests: ["Meditation", "Yoga", "Philosophy", "Healing"],
-      languages: ["Hindi", "English", "Sanskrit"]
+      bio: "Mountain guide with 10+ years of Himalayan experience",
+      age: 36,
+      location: "Manali, HP",
+      joinedDate: "June 2020",
+      tripsCompleted: 68,
+      rating: 4.9,
+      interests: ["Mountaineering", "Adventure", "Nature", "Photography"],
+      languages: ["Hindi", "English", "Pahari"]
     },
     members: [
       { 
-        avatar: "/src/assets/avatar-2.jpg", 
-        name: "Kavya Iyer",
-        bio: "Corporate executive seeking inner peace through meditation",
-        age: 29,
-        location: "Chennai",
-        joinedDate: "February 2023",
-        tripsCompleted: 4,
-        rating: 4.3,
-        interests: ["Meditation", "Wellness", "Stress Relief"],
-        languages: ["Tamil", "English", "Hindi"]
+        avatar: avatar2, 
+        name: "Neha Kapoor",
+        bio: "Adventure sports enthusiast and nature lover",
+        age: 25,
+        location: "Chandigarh",
+        joinedDate: "May 2023",
+        tripsCompleted: 3,
+        rating: 4.7,
+        interests: ["Adventure", "Nature", "Photography"],
+        languages: ["Hindi", "English", "Punjabi"]
+      },
+      { 
+        avatar: avatar3, 
+        name: "Arun Kumar",
+        bio: "Trekking enthusiast exploring the Himalayas",
+        age: 28,
+        location: "Dehradun",
+        joinedDate: "August 2023",
+        tripsCompleted: 8,
+        rating: 4.8,
+        interests: ["Trekking", "Nature", "Adventure"],
+        languages: ["Hindi", "English", "Garhwali"]
       }
     ]
   },
   {
     id: "5",
-    title: "Goa Beach Hopping",
+    title: "Goa Beach & Culture",
     location: "Goa",
-    image: "/src/assets/hero-3.jpg",
-    duration: "6 days",
-    groupSize: 7,
+    image: hero3,
+    duration: "4 days",
+    groupSize: 6,
     maxGroupSize: 10,
     price: 14000,
     rating: 4.6,
-    vibe: "Adventure",
+    vibe: "Relaxation",
     organizer: {
-      name: "Carlos D'Souza",
-      avatar: "/src/assets/avatar-3.jpg",
+      name: "Maria Fernandes",
+      avatar: avatar2,
       verified: true,
-      bio: "Local Goan showing hidden beaches and authentic coastal culture",
-      age: 28,
+      bio: "Goa native sharing authentic beach and cultural experiences",
+      age: 31,
       location: "Panaji, Goa",
-      joinedDate: "June 2021",
+      joinedDate: "December 2021",
       tripsCompleted: 41,
       rating: 4.7,
-      interests: ["Beach Culture", "Water Sports", "Local Cuisine", "Music"],
-      languages: ["Konkani", "English", "Hindi", "Portuguese"]
+      interests: ["Beach", "Culture", "Food", "Music"],
+      languages: ["Konkani", "Hindi", "English", "Portuguese"]
     },
     members: [
       { 
-        avatar: "/src/assets/avatar-1.jpg", 
-        name: "Isha Kapoor",
-        bio: "Beach lover and water sports enthusiast",
-        age: 24,
-        location: "Pune",
-        joinedDate: "August 2023",
-        tripsCompleted: 3,
-        rating: 4.2,
-        interests: ["Water Sports", "Beach Culture", "Music"],
+        avatar: avatar3, 
+        name: "Sunil Desai",
+        bio: "Music producer exploring Goa's vibrant culture",
+        age: 27,
+        location: "Mumbai",
+        joinedDate: "January 2023",
+        tripsCompleted: 5,
+        rating: 4.5,
+        interests: ["Music", "Culture", "Beach"],
         languages: ["Hindi", "English", "Marathi"]
       },
       { 
-        avatar: "/src/assets/avatar-2.jpg", 
-        name: "Arjun Nair",
-        bio: "Musician exploring Goa's vibrant music scene",
-        age: 26,
-        location: "Kochi",
-        joinedDate: "July 2023",
-        tripsCompleted: 5,
+        avatar: avatar1, 
+        name: "Priya Patel",
+        bio: "Food blogger discovering Goan cuisine",
+        age: 24,
+        location: "Pune",
+        joinedDate: "March 2023",
+        tripsCompleted: 2,
         rating: 4.4,
-        interests: ["Music", "Beach Culture", "Nightlife"],
-        languages: ["Malayalam", "English", "Hindi"]
+        interests: ["Food", "Culture", "Photography"],
+        languages: ["Hindi", "English", "Marathi"]
       }
     ]
   },
   {
     id: "6",
-    title: "Hampi Heritage Walk",
-    location: "Hampi, Karnataka",
-    image: "/src/assets/hero-1.jpg",
+    title: "Taj Mahal & Agra Fort",
+    location: "Agra, Uttar Pradesh",
+    image: hero1,
     duration: "3 days",
-    groupSize: 6,
-    maxGroupSize: 9,
-    price: 8500,
+    groupSize: 4,
+    maxGroupSize: 8,
+    price: 9000,
     rating: 4.8,
-    vibe: "Culture",
+    vibe: "Historical",
     organizer: {
-      name: "Dr. Lakshmi Rao",
-      avatar: "/src/assets/avatar-2.jpg",
+      name: "Aisha Khan",
+      avatar: avatar2,
       verified: true,
-      bio: "Archaeologist and historian specializing in Vijayanagara Empire",
-      age: 42,
-      location: "Hampi",
-      joinedDate: "September 2019",
-      tripsCompleted: 78,
-      rating: 4.9,
-      interests: ["Archaeology", "History", "Heritage", "Architecture"],
-      languages: ["Kannada", "English", "Hindi", "Telugu"]
+      bio: "History expert and Agra native sharing Mughal heritage",
+      age: 33,
+      location: "Agra, UP",
+      joinedDate: "September 2020",
+      tripsCompleted: 55,
+      rating: 4.8,
+      interests: ["History", "Architecture", "Photography", "Culture"],
+      languages: ["Hindi", "English", "Urdu"]
     },
     members: [
       { 
-        avatar: "/src/assets/avatar-3.jpg", 
-        name: "Ravi Krishnan",
-        bio: "Architecture student fascinated by ancient Indian designs",
-        age: 23,
-        location: "Bangalore",
-        joinedDate: "October 2023",
-        tripsCompleted: 2,
-        rating: 4.1,
-        interests: ["Architecture", "History", "Design"],
-        languages: ["Kannada", "English", "Hindi"]
+        avatar: avatar3, 
+        name: "Rajesh Kumar",
+        bio: "Architecture student studying Mughal monuments",
+        age: 22,
+        location: "Delhi",
+        joinedDate: "June 2023",
+        tripsCompleted: 1,
+        rating: 4.6,
+        interests: ["Architecture", "History", "Photography"],
+        languages: ["Hindi", "English"]
+      },
+      { 
+        avatar: avatar1, 
+        name: "Meera Singh",
+        bio: "Travel photographer capturing India's heritage",
+        age: 29,
+        location: "Lucknow",
+        joinedDate: "April 2023",
+        tripsCompleted: 6,
+        rating: 4.7,
+        interests: ["Photography", "History", "Travel"],
+        languages: ["Hindi", "English", "Awadhi"]
       }
     ]
   }

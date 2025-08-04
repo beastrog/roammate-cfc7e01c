@@ -2,45 +2,60 @@ import { Heart, MessageCircle, Share, Camera, MapPin } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import { Button } from "@/components/ui/button";
 
+// Import images
+import avatar1 from "@/assets/avatar-1.jpg";
+import avatar2 from "@/assets/avatar-2.jpg";
+import avatar3 from "@/assets/avatar-3.jpg";
+import hero1 from "@/assets/hero-1.jpg";
+import hero2 from "@/assets/hero-2.jpg";
+import hero3 from "@/assets/hero-3.jpg";
+
+// Mock data for community posts
 const mockPosts = [
   {
     id: "1",
     user: {
-      name: "Sneha Patel",
-      avatar: "/src/assets/avatar-1.jpg",
-      location: "Goa"
+      name: "Priya Sharma",
+      avatar: avatar1,
+      verified: true,
+      location: "Delhi"
     },
-    content: "Just had the most incredible sunrise yoga session on Arambol Beach! The energy here is magical ✨",
-    image: "/src/assets/hero-1.jpg",
-    likes: 42,
-    comments: 8,
-    time: "2h ago"
+    content: "Just completed an incredible spiritual journey to Varanasi! The morning aarti at Dashashwamedh Ghat was absolutely magical. The energy there is indescribable. Highly recommend experiencing this sacred ritual at least once in your life! 🙏✨",
+    image: hero1,
+    likes: 124,
+    comments: 23,
+    timestamp: "2 hours ago",
+    tags: ["Spiritual", "Varanasi", "Aarti", "Sacred"]
   },
   {
     id: "2",
     user: {
-      name: "Rohit Kumar",
-      avatar: "/src/assets/avatar-2.jpg",
-      location: "Rishikesh"
+      name: "Raj Patel",
+      avatar: avatar2,
+      verified: false,
+      location: "Bangalore"
     },
-    content: "Found this hidden chai stall in the mountains. Sometimes the best experiences aren't in guidebooks 🍵",
-    image: "/src/assets/hero-2.jpg",
-    likes: 67,
+    content: "Exploring the backwaters of Kerala was like stepping into a different world. The houseboat experience was peaceful and the local cuisine was amazing! Don't miss the toddy and fresh seafood. 🚣‍♀️🌴",
+    image: hero2,
+    likes: 89,
     comments: 15,
-    time: "4h ago"
+    timestamp: "5 hours ago",
+    tags: ["Kerala", "Backwaters", "Houseboat", "Local Food"]
   },
   {
     id: "3",
     user: {
-      name: "Maya Singh",
-      avatar: "/src/assets/avatar-3.jpg",
-      location: "Varanasi"
+      name: "Maya Khanna",
+      avatar: avatar3,
+      verified: true,
+      location: "Mumbai"
     },
-    content: "Evening aarti at Dashashwamedh Ghat. No words can describe this spiritual experience 🙏",
-    image: "/src/assets/hero-3.jpg",
-    likes: 89,
-    comments: 23,
-    time: "6h ago"
+    content: "Rajasthan's heritage is beyond words! The palaces, forts, and the vibrant culture left me speechless. The sunset at Jaisalmer Fort was a photographer's dream. Can't wait to share more photos! 📸🏰",
+    image: hero3,
+    likes: 156,
+    comments: 31,
+    timestamp: "1 day ago",
+    tags: ["Rajasthan", "Heritage", "Photography", "Culture"]
   }
 ];
 
@@ -104,7 +119,7 @@ export default function Community() {
                     <h4 className="font-medium">{post.user.name}</h4>
                     <div className="flex items-center text-sm text-muted-foreground">
                       <MapPin className="w-3 h-3 mr-1" />
-                      {post.user.location} • {post.time}
+                      {post.user.location} • {post.timestamp}
                     </div>
                   </div>
                 </div>

@@ -2,38 +2,56 @@ import { MapPin, Star, Shield, MessageCircle } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import { Button } from "@/components/ui/button";
 
+// Import images
+import avatar1 from "@/assets/avatar-1.jpg";
+import avatar2 from "@/assets/avatar-2.jpg";
+import avatar3 from "@/assets/avatar-3.jpg";
+
+// Mock data for guides
 const mockGuides = [
   {
     id: "1",
-    name: "Rajesh Sharma",
-    avatar: "/src/assets/avatar-1.jpg",
-    location: "Delhi",
+    name: "Arjun Kumar",
+    avatar: avatar1,
+    location: "Varanasi, UP",
+    specialty: "Spiritual & Cultural",
     rating: 4.9,
+    tripsCompleted: 45,
     reviews: 127,
-    specialties: ["Heritage Sites", "Street Food", "Local Markets"],
     price: 2500,
+    bio: "Spiritual guide with 8+ years experience in Varanasi's ancient rituals. Expert in Ganga aarti, temple visits, and cultural immersion.",
+    languages: ["Hindi", "English", "Sanskrit"],
+    specialties: ["Ganga Aarti", "Temple Tours", "Cultural Immersion", "Spiritual Guidance"],
     verified: true
   },
   {
     id: "2",
-    name: "Priya Nair",
-    avatar: "/src/assets/avatar-2.jpg",
-    location: "Kerala",
-    rating: 4.8,
+    name: "Meera Singh",
+    avatar: avatar2,
+    location: "Kochi, Kerala",
+    specialty: "Nature & Backwaters",
+    rating: 4.9,
+    tripsCompleted: 38,
     reviews: 89,
-    specialties: ["Backwaters", "Spice Gardens", "Ayurveda"],
     price: 3000,
+    bio: "Nature enthusiast and Kerala native sharing authentic experiences. Specializes in backwater tours, spice gardens, and local cuisine.",
+    languages: ["Malayalam", "Hindi", "English", "Tamil"],
+    specialties: ["Backwater Tours", "Spice Gardens", "Local Cuisine", "Nature Walks"],
     verified: true
   },
   {
     id: "3",
-    name: "Arjun Singh",
-    avatar: "/src/assets/avatar-3.jpg",
-    location: "Rajasthan",
-    rating: 4.7,
+    name: "Priya Rathore",
+    avatar: avatar3,
+    location: "Jaipur, Rajasthan",
+    specialty: "Heritage & Architecture",
+    rating: 4.8,
+    tripsCompleted: 52,
     reviews: 156,
-    specialties: ["Desert Safari", "Palace Tours", "Cultural Shows"],
     price: 3500,
+    bio: "Heritage expert and Rajasthan native sharing royal stories. Expert in palace tours, fort visits, and cultural experiences.",
+    languages: ["Hindi", "English", "Rajasthani"],
+    specialties: ["Palace Tours", "Fort Visits", "Cultural Shows", "Heritage Walks"],
     verified: true
   }
 ];

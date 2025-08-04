@@ -1,31 +1,46 @@
-import { Heart, X } from "lucide-react";
+import { useState } from "react";
+import { X, Heart, MessageCircle, Share2 } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+
+// Import images
+import trip1 from "@/assets/trip-1.jpg";
+import trip2 from "@/assets/trip-2.jpg";
+import trip3 from "@/assets/trip-3.jpg";
 
 interface LikesPopupProps {
   isOpen: boolean;
   onClose: () => void;
 }
 
+// Mock data for liked trips
 const likedTrips = [
   {
     id: "1",
     title: "Spiritual Journey to Varanasi",
+    image: trip1,
     location: "Varanasi, UP",
-    image: "/src/assets/trip-1.jpg",
-    price: 15000
+    price: 15000,
+    rating: 4.8,
+    likes: 124
   },
   {
     id: "2",
     title: "Backwaters & Spice Gardens",
+    image: trip2,
     location: "Kerala",
-    image: "/src/assets/trip-2.jpg",
-    price: 12000
+    price: 12000,
+    rating: 4.9,
+    likes: 89
   },
   {
     id: "3",
-    title: "Desert Safari Adventure",
+    title: "Rajasthan Heritage Trail",
+    image: trip3,
     location: "Rajasthan",
-    image: "/src/assets/trip-3.jpg",
-    price: 18000
+    price: 18000,
+    rating: 4.7,
+    likes: 156
   }
 ];
 
