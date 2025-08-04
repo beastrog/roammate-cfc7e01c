@@ -2,7 +2,7 @@ import { useState } from "react";
 import { X, Mail, Lock, Eye, EyeOff } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import DemoUserProfile from "./DemoUserProfile";
+import { useNavigate } from "react-router-dom";
 
 interface LoginModalProps {
   isOpen: boolean;
@@ -13,12 +13,13 @@ export default function LoginModal({ isOpen, onClose }: LoginModalProps) {
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [showDemoProfile, setShowDemoProfile] = useState(false);
+  const navigate = useNavigate();
 
   if (!isOpen) return null;
 
   const handleDemoLogin = () => {
-    setShowDemoProfile(true);
+    onClose();
+    navigate('/profile');
   };
 
   return (
@@ -138,14 +139,6 @@ export default function LoginModal({ isOpen, onClose }: LoginModalProps) {
           </p>
         </div>
       </div>
-      
-      <DemoUserProfile 
-        isOpen={showDemoProfile} 
-        onClose={() => {
-          setShowDemoProfile(false);
-          onClose();
-        }} 
-      />
     </div>
   );
 }
