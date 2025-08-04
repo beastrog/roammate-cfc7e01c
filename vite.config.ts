@@ -19,13 +19,14 @@ export default defineConfig({
       '@': resolve(__dirname, './src'),
     },
   },
-  base: process.env.NODE_ENV === 'production' ? '/roammate-cfc7e01c/' : '/',
+  base: process.env.NODE_ENV === 'production' ? '/' : '/',
   publicDir: 'public',
   build: {
     outDir: 'dist',
     assetsDir: 'assets',
     emptyOutDir: true,
     sourcemap: true,
+    manifest: true,
     rollupOptions: {
       output: {
         chunkFileNames: 'assets/js/[name]-[hash].js',
