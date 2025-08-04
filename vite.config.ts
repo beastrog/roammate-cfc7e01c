@@ -19,7 +19,7 @@ export default defineConfig({
       '@': resolve(__dirname, './src'),
     },
   },
-  base: process.env.NODE_ENV === 'production' ? '/' : '/',
+  base: '/',
   publicDir: 'public',
   build: {
     outDir: 'dist',
@@ -27,6 +27,8 @@ export default defineConfig({
     emptyOutDir: true,
     sourcemap: true,
     manifest: true,
+    minify: 'terser',
+    cssCodeSplit: true,
     rollupOptions: {
       output: {
         chunkFileNames: 'assets/js/[name]-[hash].js',
