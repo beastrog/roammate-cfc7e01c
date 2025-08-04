@@ -15,7 +15,7 @@ export default defineConfig({
       '@': resolve(__dirname, './src'),
     },
   },
-  base: './',  // Changed to relative path for better compatibility
+  base: '/',  // Use absolute paths for Vercel deployment
   build: {
     outDir: 'dist',
     emptyOutDir: true,
