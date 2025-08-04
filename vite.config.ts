@@ -27,8 +27,8 @@ export default defineConfig({
     emptyOutDir: true,
     sourcemap: true,
     manifest: true,
-    minify: 'terser',
     cssCodeSplit: true,
+    minify: 'esbuild',
     rollupOptions: {
       output: {
         chunkFileNames: 'assets/js/[name]-[hash].js',
