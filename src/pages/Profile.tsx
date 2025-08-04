@@ -7,76 +7,79 @@ import Footer from "@/components/Footer";
 
 const demoUser = {
   name: "Aarav Nijhawan",
-  avatar: "/src/assets/avatar-1.jpg",
-  coverImage: "/src/assets/hero-1.jpg",
-  bio: "Passionate traveler exploring India's hidden gems 🇮🇳 • Love connecting with locals and discovering authentic experiences • Photography enthusiast capturing moments that matter ✨",
-  age: 24,
-  location: "Mumbai, Maharashtra",
-  joinedDate: "January 2023",
-  tripsCompleted: 12,
+  avatar: "/images/avatar.jpg",
+  coverImage: "/images/cover.jpg",
+  bio: "Avid traveler and photography enthusiast exploring the world's hidden gems 🌍 • Documenting my journey one click at a time • Always up for an adventure and meeting fellow travelers! ✨",
+  age: 25,
+  location: "Mumbai, India",
+  joinedDate: "Member since 2022",
+  tripsCompleted: 15,
   rating: 4.9,
   verified: true,
-  level: "Explorer",
-  interests: ["Photography", "Culture", "Adventure", "Street Food", "Spirituality", "Heritage"],
-  languages: ["Hindi", "English", "Marathi", "Basic Gujarati"],
+  level: "Globetrotter",
+  interests: ["Photography", "Hiking", "Scuba Diving", "Local Cuisine", "History", "Wildlife"],
+  languages: ["English", "Hindi", "Spanish"],
   badges: [
-    { name: "Cultural Explorer", icon: "🏛️", description: "Visited 15+ heritage sites" },
-    { name: "Photography Pro", icon: "📸", description: "Shared 100+ travel photos" },
-    { name: "Local Guide", icon: "🗺️", description: "Helped 50+ travelers" },
-    { name: "Adventure Seeker", icon: "🏔️", description: "Completed 5+ adventure trips" },
-    { name: "Foodie Expert", icon: "🍛", description: "Tried 100+ local dishes" },
-    { name: "Community Star", icon: "⭐", description: "Top 10% community contributor" }
+    { name: "Adventure Seeker", icon: "🏔️", description: "Completed 10+ adventure trips" },
+    { name: "Photography Pro", icon: "📸", description: "Shared 200+ travel photos" },
+    { name: "Scuba Certified", icon: "🤿", description: "PADI Advanced Open Water Diver" },
+    { name: "Mountain Lover", icon: "⛰️", description: "Summited 5+ peaks" },
+    { name: "Food Explorer", icon: "🍜", description: "Tried 50+ local cuisines" },
+    { name: "Early Bird", icon: "🌅", description: "100+ sunrises captured" }
   ],
   recentTrips: [
     { 
-      name: "Ladakh Expedition", 
-      date: "Oct 2024", 
+      name: "Ladakh Road Trip", 
+      date: "Jun 2024", 
       rating: 5.0, 
-      image: "/src/assets/hero-2.jpg",
-      location: "Ladakh",
-      participants: 8
+      image: "/images/ladakh-trip.jpg",
+      location: "Ladakh, India",
+      participants: 4,
+      highlights: ["Pangong Tso Lake", "Nubra Valley", "Khardung La Pass"]
     },
     { 
-      name: "Kerala Backwaters", 
-      date: "Sep 2024", 
-      rating: 4.8, 
-      image: "/src/assets/trip-2.jpg",
-      location: "Kerala",
-      participants: 6
-    },
-    { 
-      name: "Rajasthan Heritage", 
-      date: "Aug 2024", 
+      name: "Andaman Islands", 
+      date: "Mar 2024", 
       rating: 4.9, 
-      image: "/src/assets/trip-3.jpg",
-      location: "Rajasthan",
-      participants: 10
+      image: "/images/andaman-trip.jpg",
+      location: "Andaman, India",
+      participants: 2,
+      highlights: ["Scuba Diving", "Radhanagar Beach", "Bioluminescent Plankton"]
+    },
+    { 
+      name: "Bhutan Expedition", 
+      date: "Nov 2023", 
+      rating: 4.8, 
+      image: "/images/bhutan-trip.jpg",
+      location: "Bhutan",
+      participants: 6,
+      highlights: ["Tiger's Nest", "Punakha Dzong", "Himalayan Trekking"]
     }
   ],
   photos: [
-    "/src/assets/hero-1.jpg",
-    "/src/assets/hero-2.jpg",
-    "/src/assets/hero-3.jpg",
-    "/src/assets/trip-1.jpg",
-    "/src/assets/trip-2.jpg",
-    "/src/assets/trip-3.jpg"
+    "/images/photo1.jpg",
+    "/images/photo2.jpg",
+    "/images/photo3.jpg",
+    "/images/trip-1.jpg",
+    "/images/trip-2.jpg",
+    "/images/trip-3.jpg"
   ],
   reviews: [
     {
-      reviewer: "Priya Singh",
-      avatar: "/src/assets/avatar-2.jpg",
+      reviewer: "Ananya Sharma",
+      avatar: "/images/avatar-2.jpg",
       rating: 5,
-      comment: "Aarav is an amazing travel companion! His knowledge of local culture and photography skills made our Varanasi trip unforgettable.",
-      trip: "Spiritual Journey to Varanasi",
-      date: "2 weeks ago"
+      comment: "Traveled with Aarav to Ladakh and it was the most memorable trip! His photography skills are incredible and he knows all the best spots.",
+      trip: "Ladakh Road Trip",
+      date: "3 weeks ago"
     },
     {
-      reviewer: "Rahul Kumar",
-      avatar: "/src/assets/avatar-3.jpg",
+      reviewer: "Rohan Mehta",
+      avatar: "/images/avatar-3.jpg",
       rating: 5,
-      comment: "Great guide and photographer. He knows all the hidden gems in Mumbai and made sure we experienced authentic local culture.",
-      trip: "Mumbai Heritage Walk",
-      date: "1 month ago"
+      comment: "Amazing travel companion! Great sense of adventure and always up for spontaneous detours that turn into the best memories.",
+      trip: "Andaman Islands",
+      date: "2 months ago"
     }
   ]
 };
@@ -152,8 +155,10 @@ export default function Profile() {
                   <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
                     <div>
                       <div className="flex items-center gap-2 mb-1">
-                        <h1 className="text-2xl md:text-3xl font-bold text-foreground">{demoUser.name}</h1>
-                        <div className="px-2 py-0.5 bg-primary/10 text-primary text-xs rounded-full">
+                        <h1 className="text-2xl md:text-3xl font-extrabold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                          {demoUser.name}
+                        </h1>
+                        <div className="px-2 py-0.5 bg-primary/10 text-primary text-xs rounded-full font-medium">
                           {demoUser.level}
                         </div>
                       </div>
@@ -270,23 +275,66 @@ export default function Profile() {
 
                 {/* Recent Trips */}
                 <div className="bg-card rounded-xl shadow-warm border border-border/50 p-6">
-                  <h3 className="font-semibold mb-4">Recent Adventures</h3>
+                  <h3 className="font-semibold mb-4 flex items-center gap-2">
+                    <Plane className="w-5 h-5 text-primary" />
+                    Recent Adventures
+                  </h3>
                   <div className="space-y-4">
                     {demoUser.recentTrips.map((trip, index) => (
-                      <div key={index} className="flex items-center gap-4 p-3 hover:bg-accent/30 rounded-lg transition-colors">
-                        <img
-                          src={trip.image}
-                          alt={trip.name}
-                          className="w-16 h-16 rounded-lg object-cover"
-                        />
-                        <div className="flex-1">
-                          <h4 className="font-medium">{trip.name}</h4>
-                          <p className="text-sm text-muted-foreground">{trip.location} • {trip.date}</p>
-                          <p className="text-xs text-muted-foreground">{trip.participants} participants</p>
-                        </div>
-                        <div className="flex items-center gap-1">
-                          <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-                          <span className="text-sm font-medium">{trip.rating}</span>
+                      <div 
+                        key={index} 
+                        className="group relative overflow-hidden rounded-xl border border-border/50 hover:shadow-lg transition-all duration-300 hover:-translate-y-0.5"
+                      >
+                        <div className="flex flex-col sm:flex-row">
+                          <div className="relative h-32 sm:h-auto sm:w-1/3">
+                            <img
+                              src={trip.image}
+                              alt={trip.name}
+                              className="w-full h-full object-cover"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent sm:bg-gradient-to-r sm:from-black/60 sm:to-transparent" />
+                            <div className="absolute bottom-2 left-2 right-2 text-white">
+                              <h4 className="font-bold text-lg line-clamp-1">{trip.name}</h4>
+                              <div className="flex items-center text-sm">
+                                <MapPin className="w-3.5 h-3.5 mr-1" />
+                                <span>{trip.location}</span>
+                              </div>
+                            </div>
+                          </div>
+                          <div className="p-4 flex-1">
+                            <div className="flex items-center mb-2">
+                              <div className="flex items-center bg-primary/10 text-primary px-2 py-0.5 rounded-full text-xs font-medium">
+                                <Calendar className="w-3 h-3 mr-1" />
+                                {trip.date}
+                              </div>
+                              <div className="ml-auto flex items-center bg-amber-100 text-amber-800 px-2 py-0.5 rounded-full text-xs font-medium">
+                                <Star className="w-3 h-3 fill-amber-400 text-amber-400 mr-1" />
+                                {trip.rating}
+                              </div>
+                            </div>
+                            <div className="mb-3">
+                              <h5 className="font-medium text-sm text-muted-foreground mb-1">Highlights:</h5>
+                              <div className="flex flex-wrap gap-1.5">
+                                {trip.highlights.map((highlight, i) => (
+                                  <span 
+                                    key={i}
+                                    className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-primary/10 text-primary"
+                                  >
+                                    {highlight}
+                                  </span>
+                                ))}
+                              </div>
+                            </div>
+                            <div className="flex items-center justify-between mt-auto">
+                              <div className="flex items-center text-sm text-muted-foreground">
+                                <Users className="w-4 h-4 mr-1" />
+                                {trip.participants} {trip.participants === 1 ? 'Traveler' : 'Travelers'}
+                              </div>
+                              <Button variant="outline" size="sm" className="text-xs">
+                                View Details
+                              </Button>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     ))}
