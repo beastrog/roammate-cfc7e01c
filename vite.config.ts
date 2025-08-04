@@ -7,12 +7,7 @@ export default defineConfig({
   plugins: [react()],
   server: {
     port: 3000,
-    host: true,
-    strictPort: true,
-  },
-  preview: {
-    port: 3000,
-    strictPort: true,
+    host: true
   },
   resolve: {
     alias: {
@@ -20,21 +15,10 @@ export default defineConfig({
     },
   },
   base: '/',
-  publicDir: 'public',
   build: {
     outDir: 'dist',
-    assetsDir: 'assets',
     emptyOutDir: true,
     sourcemap: true,
     manifest: true,
-    cssCodeSplit: true,
-    minify: 'esbuild',
-    rollupOptions: {
-      output: {
-        chunkFileNames: 'assets/js/[name]-[hash].js',
-        entryFileNames: 'assets/js/[name]-[hash].js',
-        assetFileNames: 'assets/[ext]/[name]-[hash].[ext]',
-      },
-    },
   },
 });
