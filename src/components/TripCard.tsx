@@ -2,6 +2,7 @@ import { useState } from "react";
 import { MapPin, Calendar, Users, Star, Heart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import JoinTripModal from "./JoinTripModal";
+import UserProfileModal from "./UserProfileModal";
 
 interface TripCardProps {
   trip: {
@@ -19,10 +20,26 @@ interface TripCardProps {
       name: string;
       avatar: string;
       verified: boolean;
+      bio?: string;
+      age?: number;
+      location?: string;
+      joinedDate?: string;
+      tripsCompleted?: number;
+      rating?: number;
+      interests?: string[];
+      languages?: string[];
     };
     members: Array<{
       avatar: string;
       name: string;
+      bio?: string;
+      age?: number;
+      location?: string;
+      joinedDate?: string;
+      tripsCompleted?: number;
+      rating?: number;
+      interests?: string[];
+      languages?: string[];
     }>;
   };
 }
@@ -31,6 +48,7 @@ export default function TripCard({ trip }: TripCardProps) {
   const [isLiked, setIsLiked] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
   const [showJoinModal, setShowJoinModal] = useState(false);
+  const [selectedMember, setSelectedMember] = useState<any>(null);
 
   return (
     <div className="group bg-card rounded-xl shadow-warm hover:shadow-cultural transition-all duration-300 overflow-hidden border border-border/50 hover:border-primary/30">
@@ -65,12 +83,17 @@ export default function TripCard({ trip }: TripCardProps) {
         {/* Group avatars */}
         <div className="absolute bottom-3 left-3 flex -space-x-2">
           {trip.members.slice(0, 3).map((member, index) => (
-            <img
+            <button
               key={index}
-              src={member.avatar}
-              alt={member.name}
-              className="w-8 h-8 rounded-full border-2 border-white object-cover"
-            />
+              onClick={() => setSelectedMember(member)}
+              className="w-8 h-8 rounded-full border-2 border-white object-cover hover:scale-110 transition-transform cursor-pointer"
+            >
+              <img
+                src={member.avatar}
+                alt={member.name}
+                className="w-full h-full rounded-full object-cover"
+              />
+            </button>
           ))}
           {trip.members.length > 3 && (
             <div className="w-8 h-8 rounded-full bg-primary text-primary-foreground border-2 border-white flex items-center justify-center text-xs font-medium">
@@ -110,11 +133,16 @@ export default function TripCard({ trip }: TripCardProps) {
         {/* Organizer */}
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-2">
-            <img
-              src={trip.organizer.avatar}
-              alt={trip.organizer.name}
-              className="w-6 h-6 rounded-full object-cover"
-            />
+            <button
+              onClick={() => setSelectedMember(trip.organizer)}
+              className="w-6 h-6 rounded-full object-cover hover:scale-110 transition-transform cursor-pointer"
+            >
+              <img
+                src={trip.organizer.avatar}
+                alt={trip.organizer.name}
+                className="w-full h-full rounded-full object-cover"
+              />
+            </button>
             <span className="text-sm text-muted-foreground">
               by {trip.organizer.name}
             </span>
@@ -136,14 +164,18 @@ export default function TripCard({ trip }: TripCardProps) {
             <h4 className="font-medium mb-2">Group Members:</h4>
             <div className="grid grid-cols-2 gap-2">
               {trip.members.map((member, index) => (
-                <div key={index} className="flex items-center gap-2 text-sm">
+                <button
+                  key={index}
+                  onClick={() => setSelectedMember(member)}
+                  className="flex items-center gap-2 text-sm p-2 hover:bg-accent rounded-lg transition-colors cursor-pointer"
+                >
                   <img
                     src={member.avatar}
                     alt={member.name}
                     className="w-6 h-6 rounded-full object-cover"
                   />
-                  <span>{member.name}</span>
-                </div>
+                  <span className="truncate">{member.name}</span>
+                </button>
               ))}
             </div>
           </div>
@@ -177,6 +209,14 @@ export default function TripCard({ trip }: TripCardProps) {
         tripPrice={trip.price}
         tripLocation={trip.location}
       />
+      
+      {selectedMember && (
+        <UserProfileModal
+          isOpen={!!selectedMember}
+          onClose={() => setSelectedMember(null)}
+          user={selectedMember}
+        />
+      )}
     </div>
   );
 }

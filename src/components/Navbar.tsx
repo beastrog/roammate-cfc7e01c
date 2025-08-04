@@ -1,13 +1,33 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Menu, X, Heart, User, Bell } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link, useNavigate } from "react-router-dom";
 import LoginModal from "./LoginModal";
+import LikesPopup from "./LikesPopup";
+import NotificationsPopup from "./NotificationsPopup";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLoginOpen, setIsLoginOpen] = useState(false);
+  const [isLikesOpen, setIsLikesOpen] = useState(false);
+  const [isNotificationsOpen, setIsNotificationsOpen] = useState(false);
+  const likesRef = useRef<HTMLDivElement>(null);
+  const notificationsRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (likesRef.current && !likesRef.current.contains(event.target as Node)) {
+        setIsLikesOpen(false);
+      }
+      if (notificationsRef.current && !notificationsRef.current.contains(event.target as Node)) {
+        setIsNotificationsOpen(false);
+      }
+    }
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
 
   const navLinks = [
     { label: "Discover", href: "/discover" },
@@ -43,18 +63,36 @@ export default function Navbar() {
 
           {/* Desktop Actions */}
           <div className="hidden md:flex items-center space-x-4">
-            <button className="p-2 hover:bg-accent rounded-full transition-colors relative">
-              <Heart className="w-5 h-5 text-muted-foreground" />
-            </button>
-            <button className="p-2 hover:bg-accent rounded-full transition-colors relative">
-              <Bell className="w-5 h-5 text-muted-foreground" />
-              <span className="absolute top-1 right-1 w-2 h-2 bg-primary rounded-full" />
-            </button>
+            <div ref={likesRef} className="relative">
+              <button 
+                onClick={() => {
+                  setIsLikesOpen(!isLikesOpen);
+                  setIsNotificationsOpen(false);
+                }}
+                className="p-2 hover:bg-accent rounded-full transition-all hover:scale-105 relative"
+              >
+                <Heart className="w-5 h-5 text-muted-foreground hover:text-primary transition-colors" />
+              </button>
+              <LikesPopup isOpen={isLikesOpen} onClose={() => setIsLikesOpen(false)} />
+            </div>
+            <div ref={notificationsRef} className="relative">
+              <button 
+                onClick={() => {
+                  setIsNotificationsOpen(!isNotificationsOpen);
+                  setIsLikesOpen(false);
+                }}
+                className="p-2 hover:bg-accent rounded-full transition-all hover:scale-105 relative"
+              >
+                <Bell className="w-5 h-5 text-muted-foreground hover:text-primary transition-colors" />
+                <span className="absolute top-1 right-1 w-2 h-2 bg-primary rounded-full animate-glow-pulse" />
+              </button>
+              <NotificationsPopup isOpen={isNotificationsOpen} onClose={() => setIsNotificationsOpen(false)} />
+            </div>
             <button 
               onClick={() => setIsLoginOpen(true)}
-              className="p-2 hover:bg-accent rounded-full transition-colors"
+              className="p-2 hover:bg-accent rounded-full transition-all hover:scale-105"
             >
-              <User className="w-5 h-5 text-muted-foreground" />
+              <User className="w-5 h-5 text-muted-foreground hover:text-primary transition-colors" />
             </button>
             <Button 
               variant="hero" 
