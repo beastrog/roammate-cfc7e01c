@@ -1,28 +1,35 @@
 import { useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Link, useNavigate } from "react-router-dom";
 import hero1 from "@/assets/hero-1.jpg";
 import hero2 from "@/assets/hero-2.jpg";
 import hero3 from "@/assets/hero-3.jpg";
 
 const heroSlides = [
   {
+    id: 1,
     image: hero1,
     title: "Step into India's Living Heritage",
     subtitle: "Join authentic cultural journeys with local explorers",
-    cta: "Discover Trips"
+    cta: "Discover Trips",
+    ctaLink: "/discover"
   },
   {
+    id: 2,
     image: hero2,
     title: "From Reels to Real Rituals",
     subtitle: "Experience spiritual moments beyond the screen",
-    cta: "Find Your Vibe"
+    cta: "Find Your Vibe",
+    ctaLink: "/discover?category=spiritual"
   },
   {
+    id: 3,
     image: hero3,
     title: "Connect. Explore. Transform.",
     subtitle: "Meet fellow travelers and create unforgettable memories",
-    cta: "Join Community"
+    cta: "Join Community",
+    ctaLink: "/community"
   }
 ];
 
@@ -42,6 +49,13 @@ export default function HeroCarousel() {
 
   const prevSlide = () => {
     setCurrentSlide((prev) => (prev - 1 + heroSlides.length) % heroSlides.length);
+  };
+
+  const navigate = useNavigate();
+
+  const handleBecomeGuide = () => {
+    // For now, navigate to profile. In the future, this could be a dedicated guide signup page
+    navigate('/profile');
   };
 
   return (
@@ -76,10 +90,17 @@ export default function HeroCarousel() {
               {heroSlides[currentSlide].subtitle}
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button variant="hero" size="xl">
-                {heroSlides[currentSlide].cta}
-              </Button>
-              <Button variant="warm" size="xl">
+              <Link to={heroSlides[currentSlide].ctaLink} className="block">
+                <Button variant="hero" size="xl" className="w-full sm:w-auto">
+                  {heroSlides[currentSlide].cta}
+                </Button>
+              </Link>
+              <Button 
+                variant="warm" 
+                size="xl"
+                onClick={handleBecomeGuide}
+                className="w-full sm:w-auto"
+              >
                 Become a Guide
               </Button>
             </div>

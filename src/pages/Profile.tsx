@@ -1,14 +1,47 @@
 import { useState } from "react";
-import { ArrowLeft, MapPin, Calendar, Star, Shield, Camera, Users, Heart, Plane, Award, Settings, Edit, Share2, MessageCircle, Phone, Mail, Instagram, Twitter, Facebook } from "lucide-react";
+import { 
+  ArrowLeft, 
+  MapPin, 
+  Calendar, 
+  Star, 
+  BadgeCheck,
+  Camera, 
+  Users, 
+  Heart, 
+  Plane, 
+  Award, 
+  Settings, 
+  Edit, 
+  Share2, 
+  MessageCircle, 
+  Phone, 
+  Mail, 
+  Instagram, 
+  Twitter, 
+  Facebook,
+  MessageSquare,
+  UserPlus
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
+// Import images
+import avatar1 from "@/assets/avatar-1.jpg";
+import avatar2 from "@/assets/avatar-2.jpg";
+import avatar3 from "@/assets/avatar-3.jpg";
+import trip1 from "@/assets/trip-1.jpg";
+import trip2 from "@/assets/trip-2.jpg";
+import trip3 from "@/assets/trip-3.jpg";
+import hero1 from "@/assets/hero-1.jpg";
+import hero2 from "@/assets/hero-2.jpg";
+import hero3 from "@/assets/hero-3.jpg";
+
 const demoUser = {
   name: "Aarav Nijhawan",
-  avatar: "/images/avatar.jpg",
-  coverImage: "/images/cover.jpg",
+  avatar: avatar2,
+  coverImage: hero1,
   bio: "Avid traveler and photography enthusiast exploring the world's hidden gems 🌍 • Documenting my journey one click at a time • Always up for an adventure and meeting fellow travelers! ✨",
   age: 25,
   location: "Mumbai, India",
@@ -32,7 +65,7 @@ const demoUser = {
       name: "Ladakh Road Trip", 
       date: "Jun 2024", 
       rating: 5.0, 
-      image: "/images/ladakh-trip.jpg",
+      image: hero2,
       location: "Ladakh, India",
       participants: 4,
       highlights: ["Pangong Tso Lake", "Nubra Valley", "Khardung La Pass"]
@@ -41,7 +74,7 @@ const demoUser = {
       name: "Andaman Islands", 
       date: "Mar 2024", 
       rating: 4.9, 
-      image: "/images/andaman-trip.jpg",
+      image: hero3,
       location: "Andaman, India",
       participants: 2,
       highlights: ["Scuba Diving", "Radhanagar Beach", "Bioluminescent Plankton"]
@@ -50,24 +83,24 @@ const demoUser = {
       name: "Bhutan Expedition", 
       date: "Nov 2023", 
       rating: 4.8, 
-      image: "/images/bhutan-trip.jpg",
+      image: hero1,
       location: "Bhutan",
       participants: 6,
       highlights: ["Tiger's Nest", "Punakha Dzong", "Himalayan Trekking"]
     }
   ],
   photos: [
-    "/images/photo1.jpg",
-    "/images/photo2.jpg",
-    "/images/photo3.jpg",
-    "/images/trip-1.jpg",
-    "/images/trip-2.jpg",
-    "/images/trip-3.jpg"
+    trip1,
+    trip2,
+    trip3,
+    hero1,
+    hero2,
+    hero3
   ],
   reviews: [
     {
       reviewer: "Ananya Sharma",
-      avatar: "/images/avatar-2.jpg",
+      avatar: avatar2,
       rating: 5,
       comment: "Traveled with Aarav to Ladakh and it was the most memorable trip! His photography skills are incredible and he knows all the best spots.",
       trip: "Ladakh Road Trip",
@@ -75,7 +108,7 @@ const demoUser = {
     },
     {
       reviewer: "Rohan Mehta",
-      avatar: "/images/avatar-3.jpg",
+      avatar: avatar3,
       rating: 5,
       comment: "Amazing travel companion! Great sense of adventure and always up for spontaneous detours that turn into the best memories.",
       trip: "Andaman Islands",
@@ -109,27 +142,34 @@ export default function Profile() {
       <div className="pt-16">
         {/* Cover & Profile Section */}
         <div className="relative">
-          {/* Cover Image */}
-          <div className="h-48 md:h-64 lg:h-80 relative overflow-hidden">
-            <img
-              src={demoUser.coverImage}
-              alt="Cover"
-              className="w-full h-full object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+          {/* Enhanced Cover Image with Parallax Effect */}
+          <div className="h-48 md:h-64 lg:h-80 relative overflow-hidden group">
+            <div className="absolute inset-0 transition-transform duration-700 group-hover:scale-110">
+              <img
+                src={demoUser.coverImage}
+                alt="Cover"
+                className="w-full h-full object-cover"
+                onError={(e) => {
+                  const target = e.target as HTMLImageElement;
+                  target.src = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMjAwIiBoZWlnaHQ9IjQwMCIgdmlld0JveD0iMCAwIDEyMDAgNDAwIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjMDA3MGI5Ii8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSI0OCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0id2hpdGUiPkNvdmVyIEltYWdlPC90ZXh0Pjwvc3ZnPg==';
+                }}
+              />
+            </div>
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
             
-            {/* Back Button */}
+            {/* Back Button with Hover Effect */}
             <button
               onClick={() => navigate(-1)}
-              className="absolute top-4 left-4 p-2 bg-white/20 backdrop-blur-sm hover:bg-white/30 rounded-full transition-colors"
+              className="absolute top-4 left-4 p-2 bg-white/20 backdrop-blur-sm hover:bg-white/30 rounded-full transition-all duration-300 transform hover:scale-110"
+              aria-label="Go back"
             >
               <ArrowLeft className="w-5 h-5 text-white" />
             </button>
 
-            {/* Demo Badge */}
-            <div className="absolute top-4 right-4">
-              <div className="px-3 py-1 bg-primary/90 backdrop-blur-sm text-primary-foreground text-sm rounded-full font-medium">
-                Demo Profile
+            {/* Demo Badge with Pulse Animation */}
+            <div className="absolute top-4 right-4 animate-pulse">
+              <div className="px-3 py-1 bg-gradient-to-r from-primary to-primary/80 backdrop-blur-sm text-primary-foreground text-sm rounded-full font-medium shadow-lg">
+                ✨ Demo Profile
               </div>
             </div>
           </div>
@@ -138,54 +178,64 @@ export default function Profile() {
           <div className="container mx-auto px-4 md:px-6">
             <div className="relative -mt-16 md:-mt-20">
               <div className="flex flex-col md:flex-row md:items-end gap-4 md:gap-6">
-                {/* Avatar */}
                 <div className="relative">
                   <img
                     src={demoUser.avatar}
                     alt={demoUser.name}
-                    className="w-24 h-24 md:w-32 md:h-32 rounded-full border-4 border-background object-cover shadow-cultural"
+                    className="w-32 h-32 md:w-40 md:h-40 rounded-full border-4 border-background object-cover shadow-lg group-hover:shadow-xl transition-all duration-300 z-10 relative"
+                    onError={(e) => {
+                      const target = e.target as HTMLImageElement;
+                      target.src = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgMjAwIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjMDA3MGI5Ii8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIyNCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0id2hpdGUiPkF2YXRhcjwvdGV4dD48L3N2Zz4=';
+                    }}
                   />
-                  <div className="absolute -bottom-1 -right-1 w-6 h-6 md:w-8 md:h-8 bg-primary rounded-full flex items-center justify-center border-2 border-background">
-                    <Shield className="w-3 h-3 md:w-4 md:h-4 text-primary-foreground" />
-                  </div>
+                  <div className="absolute inset-0 rounded-full border-4 border-transparent group-hover:border-primary/50 transition-all duration-300" />
                 </div>
 
-                {/* Info & Actions */}
-                <div className="flex-1 md:mb-4">
-                  <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-                    <div>
-                      <div className="flex items-center gap-2 mb-1">
-                        <h1 className="text-2xl md:text-3xl font-extrabold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-                          {demoUser.name}
-                        </h1>
-                        <div className="px-2 py-0.5 bg-primary/10 text-primary text-xs rounded-full font-medium">
-                          {demoUser.level}
-                        </div>
+                {/* Profile Details */}
+                <div className="flex-1 mt-4 md:mt-0">
+                  <div className="flex items-center gap-3 flex-wrap">
+                    <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">
+                      {demoUser.name}
+                    </h1>
+                    {demoUser.verified && (
+                      <div className="text-primary animate-bounce" title="Verified">
+                        <BadgeCheck className="w-6 h-6" />
                       </div>
-                      <p className="text-muted-foreground text-sm md:text-base">
-                        {demoUser.age} • {demoUser.location}
-                      </p>
-                      <div className="flex items-center gap-1 mt-1">
-                        <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-                        <span className="font-medium text-sm">{demoUser.rating}</span>
-                        <span className="text-muted-foreground text-sm">• Verified Traveler</span>
-                      </div>
+                    )}
+                  </div>
+                  
+                  <p className="text-muted-foreground mt-1 flex items-center gap-2">
+                    <MapPin className="w-4 h-4" />
+                    <span>{demoUser.location}</span>
+                    <span className="text-muted-foreground">•</span>
+                    <span>{demoUser.joinedDate}</span>
+                  </p>
+                  
+                  <div className="flex items-center gap-3 mt-3 flex-wrap">
+                    <div className="flex items-center gap-1.5 bg-background/80 backdrop-blur-sm px-3 py-1.5 rounded-full border border-border">
+                      <Star className="w-4 h-4 text-yellow-500 fill-yellow-500" />
+                      <span className="font-medium">{demoUser.rating}</span>
+                      <span className="text-muted-foreground text-sm">
+                        ({demoUser.tripsCompleted} trips)
+                      </span>
                     </div>
-
-                    {/* Action Buttons */}
-                    <div className="flex gap-2">
-                      <Button variant="outline" size="sm" className="flex items-center gap-2">
-                        <MessageCircle className="w-4 h-4" />
-                        Message
-                      </Button>
-                      <Button variant="hero" size="sm" className="flex items-center gap-2">
-                        <Users className="w-4 h-4" />
-                        Connect
-                      </Button>
-                      <Button variant="outline" size="sm">
-                        <Share2 className="w-4 h-4" />
-                      </Button>
-                    </div>
+                    <span className="text-sm bg-gradient-to-r from-primary/10 to-primary/5 text-foreground px-3 py-1.5 rounded-full border border-border">
+                      🌟 {demoUser.level}
+                    </span>
+                  </div>
+                  
+                  <div className="flex items-center gap-2 mt-4">
+                    <Button variant="outline" size="sm">
+                      <MessageSquare className="w-4 h-4 mr-2" />
+                      Message
+                    </Button>
+                    <Button variant="outline" size="sm">
+                      <UserPlus className="w-4 h-4 mr-2" />
+                      Connect
+                    </Button>
+                    <Button variant="outline" size="sm">
+                      <Share2 className="w-4 h-4" />
+                    </Button>
                   </div>
                 </div>
               </div>
@@ -431,7 +481,7 @@ export default function Profile() {
           {activeTab === "photos" && (
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
               {demoUser.photos.map((photo, index) => (
-                <div key={index} className="aspect-square">
+                <div key={index} className="aspect-square relative group overflow-hidden rounded-lg">
                   <img
                     src={photo}
                     alt={`Photo ${index + 1}`}

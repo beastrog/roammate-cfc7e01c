@@ -1,16 +1,24 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight, Star, MapPin, Calendar } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import { Button } from "@/components/ui/button";
+
+// Import images
+import avatar1 from "@/assets/avatar-1.jpg";
+import avatar2 from "@/assets/avatar-2.jpg";
+import avatar3 from "@/assets/avatar-3.jpg";
+import hero1 from "@/assets/hero-1.jpg";
+import hero2 from "@/assets/hero-2.jpg";
+import hero3 from "@/assets/hero-3.jpg";
 
 const featuredStories = [
   {
     id: "1",
     title: "From Reels to Real Rituals: My Varanasi Immersion",
     author: "Ananya Mehta",
-    avatar: "/src/assets/avatar-1.jpg",
+    avatar: avatar1,
     location: "Varanasi, UP",
-    image: "/src/assets/hero-3.jpg",
+    image: hero3,
     excerpt: "What started as a quest for Instagram-worthy shots became a profound spiritual journey that changed my perspective on travel...",
     readTime: "5 min read",
     date: "2 days ago",
@@ -21,9 +29,9 @@ const featuredStories = [
     id: "2",
     title: "Chasing Monsoons in Kerala's Backwaters",
     author: "Rohan Sharma",
-    avatar: "/src/assets/avatar-2.jpg",
+    avatar: avatar2,
     location: "Alleppey, Kerala",
-    image: "/src/assets/hero-2.jpg",
+    image: hero2,
     excerpt: "They said visiting Kerala during monsoon was crazy. Turns out, it was the best decision I ever made. Here's why...",
     readTime: "7 min read",
     date: "1 week ago",
@@ -34,9 +42,9 @@ const featuredStories = [
     id: "3",
     title: "Desert Dreams and Midnight Conversations",
     author: "Priya Singh",
-    avatar: "/src/assets/avatar-3.jpg",
+    avatar: avatar3,
     location: "Jaisalmer, Rajasthan",
-    image: "/src/assets/hero-1.jpg",
+    image: hero1,
     excerpt: "Under the star-studded Thar sky, strangers became friends, and stories became memories. This is what real travel feels like...",
     readTime: "6 min read",
     date: "2 weeks ago",
@@ -47,6 +55,15 @@ const featuredStories = [
 
 export default function Stories() {
   const [currentStory, setCurrentStory] = useState(0);
+  const [isTransitioning, setIsTransitioning] = useState(false);
+
+  // Auto-advance stories every 8 seconds
+  useEffect(() => {
+    const timer = setInterval(() => {
+      nextStory();
+    }, 8000);
+    return () => clearInterval(timer);
+  }, [currentStory]);
 
   const nextStory = () => {
     setCurrentStory((prev) => (prev + 1) % featuredStories.length);
@@ -54,6 +71,12 @@ export default function Stories() {
 
   const prevStory = () => {
     setCurrentStory((prev) => (prev - 1 + featuredStories.length) % featuredStories.length);
+  };
+
+  const goToStory = (index: number) => {
+    if (index !== currentStory) {
+      setCurrentStory(index);
+    }
   };
 
   const story = featuredStories[currentStory];
@@ -65,7 +88,7 @@ export default function Stories() {
       <div className="pt-20 pb-12">
         <div className="container mx-auto px-6">
           {/* Header */}
-          <div className="text-center mb-8">
+          <div className="text-center mb-12">
             <h1 className="text-4xl font-bold text-foreground mb-4">
               Travel <span className="text-primary">Stories</span>
             </h1>
@@ -75,83 +98,99 @@ export default function Stories() {
           </div>
 
           {/* Featured Story Carousel */}
-          <div className="max-w-4xl mx-auto mb-12">
+          <div className="max-w-5xl mx-auto mb-16">
             <div className="relative bg-card rounded-2xl shadow-cultural overflow-hidden">
-              {/* Story Image */}
-              <div className="relative h-96">
-                <img
-                  src={story.image}
-                  alt={story.title}
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-heritage/80 via-heritage/20 to-transparent" />
-                
-                {/* Navigation Arrows */}
-                <button
-                  onClick={prevStory}
-                  className="absolute left-4 top-1/2 -translate-y-1/2 p-2 bg-white/20 backdrop-blur-sm rounded-full hover:bg-white/30 transition-all"
-                >
-                  <ChevronLeft className="w-6 h-6 text-white" />
-                </button>
-                <button
-                  onClick={nextStory}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 p-2 bg-white/20 backdrop-blur-sm rounded-full hover:bg-white/30 transition-all"
-                >
-                  <ChevronRight className="w-6 h-6 text-white" />
-                </button>
-
-                {/* Story Content Overlay */}
-                <div className="absolute bottom-0 left-0 right-0 p-8 text-white">
-                  <div className="flex items-center gap-2 mb-3">
-                    <span className="px-3 py-1 bg-primary text-primary-foreground text-sm font-medium rounded-full">
-                      {story.category}
-                    </span>
-                    <div className="flex items-center gap-1">
-                      {[...Array(story.rating)].map((_, i) => (
-                        <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-                      ))}
-                    </div>
-                  </div>
-                  
-                  <h2 className="text-3xl font-bold mb-3">{story.title}</h2>
-                  <p className="text-white/90 text-lg mb-4 line-clamp-2">{story.excerpt}</p>
-                  
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-3">
+              {/* Story Slides */}
+              <div className="relative h-[500px] overflow-hidden">
+                {featuredStories.map((slide, index) => (
+                  <div
+                    key={slide.id}
+                    className={`absolute inset-0 transition-opacity duration-1000 ${
+                      index === currentStory ? 'opacity-100' : 'opacity-0 pointer-events-none'
+                    }`}
+                  >
+                    <div className="absolute inset-0">
                       <img
-                        src={story.avatar}
-                        alt={story.author}
-                        className="w-8 h-8 rounded-full object-cover"
+                        src={slide.image}
+                        alt={slide.title}
+                        className="w-full h-full object-cover"
                       />
-                      <div>
-                        <p className="font-medium">{story.author}</p>
-                        <div className="flex items-center text-sm text-white/80">
-                          <MapPin className="w-3 h-3 mr-1" />
-                          {story.location}
+                      <div className="absolute inset-0 bg-gradient-to-t from-heritage/80 via-heritage/20 to-transparent" />
+                    </div>
+                    
+                    {/* Story Content */}
+                    <div className="absolute bottom-0 left-0 right-0 p-8 text-white">
+                      <div className="flex items-center gap-2 mb-3">
+                        <span className="px-3 py-1 bg-primary text-primary-foreground text-sm font-medium rounded-full">
+                          {slide.category}
+                        </span>
+                        <div className="flex items-center gap-1">
+                          {[...Array(slide.rating)].map((_, i) => (
+                            <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                          ))}
+                        </div>
+                      </div>
+                      
+                      <h2 className="text-3xl font-bold mb-3">{slide.title}</h2>
+                      <p className="text-white/90 text-lg mb-4 line-clamp-2">{slide.excerpt}</p>
+                      
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-3">
+                          <img
+                            src={slide.avatar}
+                            alt={slide.author}
+                            className="w-10 h-10 rounded-full object-cover border-2 border-white/20"
+                          />
+                          <div>
+                            <p className="font-medium">{slide.author}</p>
+                            <div className="flex items-center text-sm text-white/80">
+                              <MapPin className="w-3 h-3 mr-1" />
+                              {slide.location}
+                            </div>
+                          </div>
+                        </div>
+                        
+                        <div className="flex items-center gap-4 text-sm text-white/80">
+                          <div className="flex items-center gap-1">
+                            <Calendar className="w-4 h-4" />
+                            {slide.date}
+                          </div>
+                          <span>{slide.readTime}</span>
                         </div>
                       </div>
                     </div>
-                    
-                    <div className="flex items-center gap-4 text-sm text-white/80">
-                      <div className="flex items-center gap-1">
-                        <Calendar className="w-4 h-4" />
-                        {story.date}
-                      </div>
-                      <span>{story.readTime}</span>
-                    </div>
                   </div>
-                </div>
+                ))}
               </div>
 
+              {/* Navigation Arrows */}
+              <button
+                onClick={prevStory}
+                className="absolute left-6 top-1/2 -translate-y-1/2 z-20 p-3 rounded-full bg-white/20 hover:bg-white/30 text-white transition-all backdrop-blur-sm"
+                aria-label="Previous story"
+              >
+                <ChevronLeft className="w-6 h-6" />
+              </button>
+              <button
+                onClick={nextStory}
+                className="absolute right-6 top-1/2 -translate-y-1/2 z-20 p-3 rounded-full bg-white/20 hover:bg-white/30 text-white transition-all backdrop-blur-sm"
+                aria-label="Next story"
+              >
+                <ChevronRight className="w-6 h-6" />
+              </button>
+
               {/* Story Indicators */}
-              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+              <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex gap-2">
                 {featuredStories.map((_, index) => (
                   <button
                     key={index}
-                    onClick={() => setCurrentStory(index)}
-                    className={`w-2 h-2 rounded-full transition-all ${
-                      index === currentStory ? "bg-white" : "bg-white/50"
+                    onClick={() => goToStory(index)}
+                    className={`w-3 h-3 rounded-full transition-all ${
+                      index === currentStory 
+                        ? "bg-white shadow-glow scale-125" 
+                        : "bg-white/50 hover:bg-white/70"
                     }`}
+                    aria-label={`Go to story ${index + 1}`}
                   />
                 ))}
               </div>

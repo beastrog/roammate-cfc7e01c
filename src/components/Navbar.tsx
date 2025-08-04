@@ -30,6 +30,7 @@ export default function Navbar() {
   }, []);
 
   const navLinks = [
+    { label: "Home", href: "/" },
     { label: "Discover", href: "/discover" },
     { label: "Local Guides", href: "/guides" },
     { label: "Community", href: "/community" },
